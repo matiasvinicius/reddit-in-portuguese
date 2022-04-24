@@ -42,7 +42,7 @@ class AuthorClassifier:
     
     def predict(self, X_test):
         y_pred = self.pipe.predict(X_test)
-        self.decision_function = self.pipe.decision_function(X_test)
+        self.decision_function = self.pipe.predict_proba(X_test)[:,1]
         return y_pred
     
     def evaluate(self, y_true, y_pred):
