@@ -19,7 +19,7 @@ class AuthorClassifier:
         self.scaler = scaler
         self.pca = pca
         self.pipe = None
-        self.decision_function = None
+        self.predict_proba = None
 
     def fit(self, X_train, y_train):
         steps = list() 
@@ -42,7 +42,7 @@ class AuthorClassifier:
     
     def predict(self, X_test):
         y_pred = self.pipe.predict(X_test)
-        self.decision_function = self.pipe.predict_proba(X_test)[:,1]
+        self.predict_proba = self.pipe.predict_proba(X_test)[:,1]
         return y_pred
     
     def evaluate(self, y_true, y_pred):
@@ -64,7 +64,7 @@ class AuthorClassifier:
         metrics["f1_weighted"] = round(f1_score(y_true, y_pred, average='weighted'), 4 )
         metrics["f1_micro"] = round(f1_score(y_true, y_pred, average='micro'), 4 )
         metrics["f1_macro"] = round(f1_score(y_true, y_pred, average='macro'), 4 )
-        metrics["auc_score"] = round(roc_auc_score(y_true, self.decision_function), 4)
+        metrics["auc_score"] = round(roc_auc_score(y_true, self.predict_proba), 4)
         metrics["accuracy"] = round(accuracy_score(y_true, y_pred), 4 )
 
         return metrics
