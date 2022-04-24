@@ -32,3 +32,20 @@ def get_data(csv_path, select_authors=True, remove_duplicates=True):
     if select_authors: df = get_top_authors(df)
     if remove_duplicates: df.drop_duplicates("comment", inplace=True)
     return df
+
+class SparseToArray():
+    """
+    https://stackoverflow.com/questions/28384680/scikit-learns-pipeline-a-sparse-matrix-was-passed-but-dense-data-is-required
+    """
+
+    def __repr__(self):
+        return("SparseToArray()")
+
+    def __str__(self):
+        return("SparseToArray()")
+
+    def fit(self, X, y=None, **fit_params):
+        return self
+
+    def transform(self, X, y=None, **fit_params):
+        return X.toarray()
