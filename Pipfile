@@ -11,6 +11,7 @@ seaborn = "*"
 scikit-learn = "*"
 torch = "*"
 tensorflow = "*"
+pipfile = "*"
 
 [dev-packages]
 
