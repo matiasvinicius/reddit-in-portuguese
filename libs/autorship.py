@@ -1,5 +1,7 @@
+import imp
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import precision_score, accuracy_score, recall_score, f1_score, roc_auc_score
 import numpy as np
@@ -13,38 +15,52 @@ class AuthorClassifier:
                 vectorizer=CountVectorizer(), 
                 clf=MultinomialNB(),
                 scaler=None,
-                pca=None):
+                pca=None,
+                param_grid=None):
         self.vectorizer = vectorizer
         self.clf = clf
         self.scaler = scaler
         self.pca = pca
+        self.param_grid = param_grid
         self.pipe = None
         self.predict_proba = None
 
-    def fit(self, X_train, y_train):
+    def fit(self, X_train, y_train, params=[]):
         steps = list() 
-        steps.append((self.vectorizer.__str__(), self.vectorizer))
+        steps.append(("vectorizer", self.vectorizer))
 
         if self.scaler or self.pca: 
             steps.append(("SparseToArray()", SparseToArray()))
         
         if self.scaler: 
-            steps.append((self.scaler.__str__(), self.scaler))
+            steps.append(("scaler", self.scaler))
         if self.pca: 
-            steps.append((self.pca.__str__(), self.pca))
+            steps.append(("pca", self.pca))
         
-        steps.append((self.clf.__str__(), self.clf))
+        steps.append(("clf", self.clf))
 
         pipe = Pipeline(steps)
+
+        if self.param_grid:
+            pipe = GridSearchCV(pipe, self.param_grid, n_jobs=-1, cv=3)
+    
         pipe.fit(X_train, y_train)
         self.pipe = pipe
-        return pipe
+        return self.pipe
     
     def predict(self, X_test):
         y_pred = self.pipe.predict(X_test)
         self.predict_proba = self.pipe.predict_proba(X_test)[:,1]
         return y_pred
     
+    def get_best_params(self):
+        if self.pipe: return self.pipe.best_params_
+        return None
+
+    def get_best_estimator(self):
+        if self.pipe: return self.pipe.best_estimator_
+        return None
+
     def evaluate(self, y_true, y_pred):
         metrics = dict()
         for i, author in enumerate(np.unique(y_true)):
