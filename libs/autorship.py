@@ -16,11 +16,13 @@ class AuthorClassifier:
                 clf=MultinomialNB(),
                 scaler=None,
                 pca=None,
+                kbest=None,
                 param_grid=None):
         self.vectorizer = vectorizer
         self.clf = clf
         self.scaler = scaler
         self.pca = pca
+        self.kbest = kbest
         self.param_grid = param_grid
         self.pipe = None
         self.predict_proba = None
@@ -36,7 +38,9 @@ class AuthorClassifier:
             steps.append(("scaler", self.scaler))
         if self.pca: 
             steps.append(("pca", self.pca))
-        
+        if self.kbest:
+            steps.append(("kbest", self.kbest))
+
         steps.append(("clf", self.clf))
 
         pipe = Pipeline(steps)
