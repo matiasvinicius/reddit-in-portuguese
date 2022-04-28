@@ -1,6 +1,7 @@
 import imp
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC, SVC
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MaxAbsScaler
@@ -8,6 +9,8 @@ from sklearn.metrics import precision_score, accuracy_score, recall_score, f1_sc
 import numpy as np
 
 import sys
+
+from sklearn.svm import LinearSVC
 sys.path.insert(1, '../../libs')
 from utils import SparseToArray
 
@@ -55,7 +58,10 @@ class AuthorClassifier:
     
     def predict(self, X_test):
         y_pred = self.pipe.predict(X_test)
-        self.predict_proba = self.pipe.predict_proba(X_test)[:,1]
+        if isinstance(self.pipe["clf"], LinearSVC) or isinstance(self.pipe["clf"], SVC):
+            self.predict_proba = self.pipe.decision_function(X_test)
+        else:
+            self.predict_proba = self.pipe.predict_proba(X_test)[:,1]
         return y_pred
     
     def get_best_params(self):
