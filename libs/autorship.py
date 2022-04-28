@@ -3,6 +3,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MaxAbsScaler
 from sklearn.metrics import precision_score, accuracy_score, recall_score, f1_score, roc_auc_score
 import numpy as np
 
@@ -31,7 +32,7 @@ class AuthorClassifier:
         steps = list() 
         steps.append(("vectorizer", self.vectorizer))
 
-        if self.scaler or self.pca: 
+        if (self.scaler or self.pca) and not(isinstance(self.scaler, MaxAbsScaler)): 
             steps.append(("SparseToArray()", SparseToArray()))
         
         if self.scaler: 
