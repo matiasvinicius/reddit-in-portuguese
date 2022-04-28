@@ -49,3 +49,24 @@ class SparseToArray():
 
     def transform(self, X, y=None, **fit_params):
         return X.toarray()
+
+
+def temporal_train_test_split(df, author1, author2):
+    data_2authors = df[df.username.isin([author1, author2])]
+    data_2authors = data_2authors.sort_values("created_utc")
+    train_size = 0.75
+
+    data_author1 = data_2authors[data_2authors.username == author1]
+    train_author1 = data_author1[:int(len(data_author1)*train_size)]
+    test_author1 = data_author1[int(len(data_author1)*train_size):]
+
+    data_author2 = data_2authors[data_2authors.username == author2]
+    train_author2 = data_author2[:int(len(data_author2)*train_size)]
+    test_author2 = data_author2[int(len(data_author2)*train_size):]
+
+    X_train = pd.concat([train_author1.comment, train_author2.comment])
+    y_train = pd.concat([train_author1.username, train_author2.username])
+    X_test = pd.concat([test_author1.comment, test_author2.comment])
+    y_test = pd.concat([test_author1.username, test_author2.username])
+
+    return X_train, X_test, y_train, y_test
