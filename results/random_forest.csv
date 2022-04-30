@@ -1,0 +1,13 @@
+,f1_macro,recall_macro,precision_macro,accuracy,auc_score,vectorizer
+0,0.8506438095238095,0.8513961904761905,0.8538028571428572,0.8509590476190475,0.9188790476190477,CountVectorizer(tokenizer=<bound method TweetTokenizer.tokenize of <nltk.tokenize.casual.TweetTokenizer object at 0x7f90485c8cd0>>)
+1,0.8323742857142857,0.83438,0.8409304761904761,0.8333123809523809,0.9114152380952382,"CountVectorizer(ngram_range=(1, 3),
+                tokenizer=<bound method TweetTokenizer.tokenize of <nltk.tokenize.casual.TweetTokenizer object at 0x7feefd707cd0>>)"
+2,0.8095790476190475,0.8103457142857142,0.8132514285714285,0.8101828571428571,0.8912171428571429,"CountVectorizer(analyzer='char', ngram_range=(1, 5))"
+3,0.7732161904761904,0.7759914285714286,0.7857752380952381,0.7757666666666665,0.8631200000000001,"CountVectorizer(analyzer='char', ngram_range=(4, 5))"
+4,0.7799961904761905,0.7819828571428571,0.7885638095238096,0.7815933333333334,0.86792,"CountVectorizer(analyzer='char', ngram_range=(3, 8))"
+5,0.846649523809524,0.8473742857142859,0.8496057142857143,0.8469352380952382,0.9163038095238095,TfidfVectorizer(tokenizer=<bound method TweetTokenizer.tokenize of <nltk.tokenize.casual.TweetTokenizer object at 0x7f3d73a36cd0>>)
+6,0.8298219047619045,0.831432380952381,0.8362971428571429,0.8304361904761905,0.9087495238095238,"TfidfVectorizer(ngram_range=(1, 3),
+                tokenizer=<bound method TweetTokenizer.tokenize of <nltk.tokenize.casual.TweetTokenizer object at 0x7f3d69eaf040>>)"
+7,0.80916,0.8100095238095238,0.8132514285714285,0.8098085714285714,0.8922609523809525,"TfidfVectorizer(analyzer='char', ngram_range=(1, 5))"
+8,0.7736819047619047,0.7768466666666667,0.7879828571428572,0.7766780952380953,0.8633819047619048,"TfidfVectorizer(analyzer='char', ngram_range=(4, 5))"
+9,0.7762504761904762,0.7788047619047618,0.7881095238095237,0.7786552380952381,0.8693657142857143,"TfidfVectorizer(analyzer='char', ngram_range=(3, 8))"
