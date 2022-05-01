@@ -1,3 +1,4 @@
+from random import random
 import pandas as pd
 from sklearn.utils import shuffle
 import praw
@@ -64,9 +65,9 @@ def temporal_train_test_split(df, author1, author2):
     train_author2 = data_author2[:int(len(data_author2)*train_size)]
     test_author2 = data_author2[int(len(data_author2)*train_size):]
 
-    X_train = pd.concat([train_author1.comment, train_author2.comment])
-    y_train = pd.concat([train_author1.username, train_author2.username])
-    X_test = pd.concat([test_author1.comment, test_author2.comment])
-    y_test = pd.concat([test_author1.username, test_author2.username])
+    X_train = shuffle(pd.concat([train_author1.comment, train_author2.comment]), random_state=42)
+    y_train = shuffle(pd.concat([train_author1.username, train_author2.username]), random_state=42)
+    X_test = shuffle(pd.concat([test_author1.comment, test_author2.comment]), random_state=42)
+    y_test = shuffle(pd.concat([test_author1.username, test_author2.username]), random_state=42)
 
     return X_train, X_test, y_train, y_test
