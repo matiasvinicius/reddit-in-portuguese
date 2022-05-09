@@ -12,6 +12,7 @@ scikit-learn = "*"
 torch = "*"
 tensorflow = "*"
 pipfile = "*"
+transformers = "*"
 
 [dev-packages]
 
