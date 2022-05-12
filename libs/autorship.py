@@ -18,12 +18,14 @@ class AuthorClassifier:
     def __init__(self, 
                 vectorizer=CountVectorizer(), 
                 clf=MultinomialNB(),
+                embeddings=False,
                 scaler=None,
                 pca=None,
                 kbest=None,
                 param_grid=None):
         self.vectorizer = vectorizer
         self.clf = clf
+        self.embeddings = embeddings
         self.scaler = scaler
         self.pca = pca
         self.kbest = kbest
@@ -33,25 +35,26 @@ class AuthorClassifier:
 
     def fit(self, X_train, y_train, params=[]):
         steps = list() 
-        steps.append(("vectorizer", self.vectorizer))
 
-        if (self.scaler or self.pca) and not(isinstance(self.scaler, MaxAbsScaler)): 
-            steps.append(("SparseToArray()", SparseToArray()))
-        
-        if self.scaler: 
-            steps.append(("scaler", self.scaler))
-        if self.pca: 
-            steps.append(("pca", self.pca))
-        if self.kbest:
-            steps.append(("kbest", self.kbest))
+        if not(self.embeddings): 
+            steps.append(("vectorizer", self.vectorizer))
+            
+            if (self.scaler or self.pca) and not(isinstance(self.scaler, MaxAbsScaler)): 
+                steps.append(("SparseToArray()", SparseToArray()))
+            
+            if self.scaler: 
+                steps.append(("scaler", self.scaler))
+            if self.pca: 
+                steps.append(("pca", self.pca))
+            if self.kbest:
+                steps.append(("kbest", self.kbest))
 
         steps.append(("clf", self.clf))
-
         pipe = Pipeline(steps)
-
+        
         if self.param_grid:
             pipe = GridSearchCV(pipe, self.param_grid, n_jobs=-1, cv=3)
-    
+        
         pipe.fit(X_train, y_train)
         self.pipe = pipe
         return self.pipe

@@ -20,7 +20,7 @@ def create_praw_instace():
     return reddit
 
 def get_top_authors(df):
-    n_comments = df.groupby("username")["comment"].count()
+    n_comments = df.groupby("usercommentcommentname")["comment"].count()
     top_authors = n_comments.index[(n_comments>=975) & (n_comments<=1025)]
     df = df[df.username.isin(top_authors)]
     return df
@@ -65,9 +65,12 @@ def temporal_train_test_split(df, author1, author2):
     train_author2 = data_author2[:int(len(data_author2)*train_size)]
     test_author2 = data_author2[int(len(data_author2)*train_size):]
 
-    X_train = shuffle(pd.concat([train_author1.comment, train_author2.comment]), random_state=42)
+    
+    X_train = shuffle(pd.concat([train_author1.drop(["username", "created_utc"], axis=1), 
+            train_author2.drop(["username", "created_utc"], axis=1)]), random_state=42)
     y_train = shuffle(pd.concat([train_author1.username, train_author2.username]), random_state=42)
-    X_test = shuffle(pd.concat([test_author1.comment, test_author2.comment]), random_state=42)
+    X_test = shuffle(pd.concat([test_author1.drop(["username", "created_utc"], axis=1),
+            test_author2.drop(["username", "created_utc"], axis=1)]), random_state=42)
     y_test = shuffle(pd.concat([test_author1.username, test_author2.username]), random_state=42)
 
     return X_train, X_test, y_train, y_test
