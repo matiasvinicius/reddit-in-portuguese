@@ -20,10 +20,11 @@ def create_praw_instace():
     return reddit
 
 def get_top_authors(df):
-    n_comments = df.groupby("usercommentcommentname")["comment"].count()
+    n_comments = df.groupby("username")["comment"].count()
     top_authors = n_comments.index[(n_comments>=975) & (n_comments<=1025)]
     df = df[df.username.isin(top_authors)]
     return df
+
 
 def get_data(csv_path, select_authors=True, remove_duplicates=True):
     df = pd.read_csv(csv_path)
