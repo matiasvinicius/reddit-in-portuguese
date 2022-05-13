@@ -13,6 +13,8 @@ torch = "*"
 tensorflow = "*"
 pipfile = "*"
 transformers = "*"
+gensim = "*"
+praw = "*"
 
 [dev-packages]
 
