@@ -48,6 +48,9 @@ class AuthorClassifier:
                 steps.append(("pca", self.pca))
             if self.kbest:
                 steps.append(("kbest", self.kbest))
+        
+        elif self.scaler: 
+            steps.append(("scaler", self.scaler))
 
         steps.append(("clf", self.clf))
         pipe = Pipeline(steps)
