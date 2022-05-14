@@ -1,0 +1,20 @@
+,f1_macro,recall_macro,precision_macro,accuracy,auc_score,classifier
+0,0.6305352380952381,0.6506647619047621,0.6905199999999999,0.6508619047619049,0.7109257142857143,MultinomialNB()
+1,0.7506733333333333,0.7524733333333333,0.7596028571428572,0.752687619047619,0.8256314285714286,"LogisticRegression(penalty='l1', random_state=42, solver='liblinear')"
+2,0.7455076190476191,0.7477533333333332,0.7568514285714285,0.7480209523809523,0.8225961904761905,"LogisticRegression(random_state=42, solver='liblinear')"
+3,0.7681866666666668,0.76952,0.7758561904761906,0.7697704761904762,0.8433009523809525,"LinearSVC(max_iter=10000, random_state=42)"
+4,0.7416133333333333,0.7457076190476191,0.7597457142857144,0.7458409523809524,0.8363457142857142,SVC(random_state=42)
+5,0.6961371428571429,0.6963504761904762,0.6969000000000001,0.6964980952380951,0.6963399999999998,DecisionTreeClassifier(random_state=42)
+6,0.7737685714285715,0.7743199999999999,0.7759819047619047,0.7742333333333334,0.8488104761904761,RandomForestClassifier(random_state=42)
+7,0.7552161904761905,0.7554761904761905,0.7564895238095236,0.755632380952381,0.826072380952381,AdaBoostClassifier(random_state=42)
+8,0.7728780952380954,0.7732209523809523,0.7743619047619048,0.7732457142857142,0.8489666666666666,GradientBoostingClassifier(random_state=42)
+9,0.7706714285714286,0.7716047619047619,0.7758390476190478,0.7717961904761905,0.8425457142857143,"StackingClassifier(estimators=[('svm',
+                                LinearSVC(max_iter=10000, random_state=42)),
+                               ('lr_l1',
+                                LogisticRegression(penalty='l1',
+                                                   random_state=42,
+                                                   solver='liblinear'),
+                                'rf',
+                                RandomForestClassifier(random_state=42))],
+                   final_estimator=LogisticRegression(random_state=42,
+                                                      solver='liblinear'))"
