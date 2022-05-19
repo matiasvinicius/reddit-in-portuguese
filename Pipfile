@@ -17,6 +17,7 @@ gensim = "*"
 praw = "*"
 spacy = "*"
 nltk = "*"
+statsmodels = "*"
 
 [dev-packages]
 
