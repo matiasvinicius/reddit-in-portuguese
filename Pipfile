@@ -16,6 +16,7 @@ transformers = "*"
 gensim = "*"
 praw = "*"
 spacy = "*"
+nltk = "*"
 
 [dev-packages]
 
