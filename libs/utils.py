@@ -3,6 +3,8 @@ import pandas as pd
 from sklearn.utils import shuffle
 import praw
 import os
+import numpy as np
+from sklearn.metrics import precision_score, accuracy_score, recall_score, f1_score, roc_auc_score
 
 def get_subreddits(path_subs="data/sub_names.txt"):
     with open(path_subs) as f:
@@ -75,3 +77,28 @@ def temporal_train_test_split(df, author1, author2):
     y_test = shuffle(pd.concat([test_author1.username, test_author2.username]), random_state=42)
 
     return X_train, X_test, y_train, y_test
+
+
+def evaluate_keras(y_true, y_score, author1, author2):
+    y_pred = y_score.argmax(axis=1)
+    metrics = dict()
+    metrics[f"author1"] = author1
+    metrics[f"precision_author1"] = round(precision_score(y_true, y_pred, pos_label=0), 4)
+    metrics[f"recall_author1"] = round(recall_score(y_true, y_pred, pos_label=0), 4)
+    metrics[f"f1_score_author1"] = round(f1_score(y_true, y_pred, pos_label=0), 4)
+    metrics[f"author2"] = author2
+    metrics[f"precision_author2"] = round(precision_score(y_true, y_pred, pos_label=1), 4)
+    metrics[f"recall_author2"] = round(recall_score(y_true, y_pred, pos_label=1), 4)
+    metrics[f"f1_score_author2"] = round(f1_score(y_true, y_pred, pos_label=1), 4)
+    metrics["precision_weighted"] = round(precision_score(y_true, y_pred, average='weighted'), 4 )
+    metrics["precision_micro"] = round(precision_score(y_true, y_pred, average='micro'), 4 )
+    metrics["precision_macro"] = round(precision_score(y_true, y_pred, average='macro'), 4 )
+    metrics["recall_weighted"] = round(recall_score(y_true, y_pred, average='weighted'), 4 )
+    metrics["recall_micro"] = round(recall_score(y_true, y_pred, average='micro'), 4 )
+    metrics["recall_macro"] = round(recall_score(y_true, y_pred, average='macro'), 4 )
+    metrics["f1_weighted"] = round(f1_score(y_true, y_pred, average='weighted'), 4 )
+    metrics["f1_micro"] = round(f1_score(y_true, y_pred, average='micro'), 4 )
+    metrics["f1_macro"] = round(f1_score(y_true, y_pred, average='macro'), 4 )
+    metrics["auc_score"] = round(roc_auc_score(y_true, y_score[:,1]), 4)
+    metrics["accuracy"] = round(accuracy_score(y_true, y_pred), 4 )
+    return metrics
