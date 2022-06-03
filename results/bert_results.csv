@@ -1,0 +1,20 @@
+,f1_macro,recall_macro,precision_macro,accuracy,auc_score,classifier
+0,0.7068257142857142,0.7169723809523809,0.7396952380952382,0.714607619047619,0.8342142857142856,MultinomialNB()
+1,0.8707438095238095,0.8709104761904762,0.8713152380952381,0.8710590476190475,0.933232380952381,"LogisticRegression(penalty='l1', random_state=42, solver='liblinear')"
+2,0.8766142857142856,0.8767457142857141,0.8772485714285715,0.8769390476190476,0.9391542857142857,"LogisticRegression(random_state=42, solver='liblinear')"
+3,0.8621171428571427,0.862387619047619,0.862555238095238,0.8623838095238096,0.9252980952380953,"LinearSVC(max_iter=10000, random_state=42)"
+4,0.8848142857142858,0.8847714285714285,0.8864114285714284,0.885252380952381,0.9486038095238096,SVC(random_state=42)
+5,0.7110333333333332,0.7114790476190477,0.7118095238095239,0.7116904761904762,0.71144,DecisionTreeClassifier(random_state=42)
+6,0.8283428571428572,0.8286847619047619,0.8319323809523809,0.8293228571428571,0.9058142857142857,RandomForestClassifier(random_state=42)
+7,0.8143219047619047,0.8146714285714285,0.8147895238095237,0.8147009523809522,0.8885866666666667,AdaBoostClassifier(random_state=42)
+8,0.8448114285714287,0.8450000000000001,0.8462247619047619,0.8453485714285714,0.9178085714285714,GradientBoostingClassifier(random_state=42)
+9,0.8728609523809524,0.8729695238095238,0.8734276190476191,0.8731866666666666,0.9341933333333333,"StackingClassifier(estimators=[('svm',
+                                LinearSVC(max_iter=10000, random_state=42)),
+                               ('lr_l1',
+                                LogisticRegression(penalty='l1',
+                                                   random_state=42,
+                                                   solver='liblinear'),
+                                'rf',
+                                RandomForestClassifier(random_state=42))],
+                   final_estimator=LogisticRegression(random_state=42,
+                                                      solver='liblinear'))"
