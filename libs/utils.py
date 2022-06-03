@@ -102,3 +102,27 @@ def evaluate_keras(y_true, y_score, author1, author2):
     metrics["auc_score"] = round(roc_auc_score(y_true, y_score[:,1]), 4)
     metrics["accuracy"] = round(accuracy_score(y_true, y_pred), 4 )
     return metrics
+
+
+def evaluate_bert(y_true, y_pred, y_score, author1, author2):
+    metrics = dict()
+    metrics[f"author1"] = author1
+    metrics[f"precision_author1"] = round(precision_score(y_true, y_pred, pos_label=author1), 4)
+    metrics[f"recall_author1"] = round(recall_score(y_true, y_pred, pos_label=author1), 4)
+    metrics[f"f1_score_author1"] = round(f1_score(y_true, y_pred, pos_label=author1), 4)
+    metrics[f"author2"] = author2
+    metrics[f"precision_author2"] = round(precision_score(y_true, y_pred, pos_label=author2), 4)
+    metrics[f"recall_author2"] = round(recall_score(y_true, y_pred, pos_label=author2), 4)
+    metrics[f"f1_score_author2"] = round(f1_score(y_true, y_pred, pos_label=author2), 4)
+    metrics["precision_weighted"] = round(precision_score(y_true, y_pred, average='weighted'), 4 )
+    metrics["precision_micro"] = round(precision_score(y_true, y_pred, average='micro'), 4 )
+    metrics["precision_macro"] = round(precision_score(y_true, y_pred, average='macro'), 4 )
+    metrics["recall_weighted"] = round(recall_score(y_true, y_pred, average='weighted'), 4 )
+    metrics["recall_micro"] = round(recall_score(y_true, y_pred, average='micro'), 4 )
+    metrics["recall_macro"] = round(recall_score(y_true, y_pred, average='macro'), 4 )
+    metrics["f1_weighted"] = round(f1_score(y_true, y_pred, average='weighted'), 4 )
+    metrics["f1_micro"] = round(f1_score(y_true, y_pred, average='micro'), 4 )
+    metrics["f1_macro"] = round(f1_score(y_true, y_pred, average='macro'), 4 )
+    metrics["auc_score"] = round(roc_auc_score(y_true, y_score), 4)
+    metrics["accuracy"] = round(accuracy_score(y_true, y_pred), 4 )
+    return metrics
