@@ -18,6 +18,7 @@ praw = "*"
 spacy = "*"
 nltk = "*"
 statsmodels = "*"
+imblearn = "*"
 
 [dev-packages]
 

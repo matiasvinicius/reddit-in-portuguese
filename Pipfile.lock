@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8d38c0bc52dddf707053fd832e37cad3eef5b5cc14cbf883e236f0a7ee237f98"
+            "sha256": "1e0ebc4111813630032bd8365e2837dfaab6705349c19e6cf09b3e3bfc581fa1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -301,6 +301,21 @@
             ],
             "markers": "python_version >= '3'",
             "version": "==3.3"
+        },
+        "imbalanced-learn": {
+            "hashes": [
+                "sha256:2a792a4af9c814d4f95552646fa2148edd2195d564821d1738aab45b1e8d6461",
+                "sha256:4e14f7ae6078b5ab843b73c379b2ac50b207446415d9c2438c885d6cb5afd962"
+            ],
+            "version": "==0.9.1"
+        },
+        "imblearn": {
+            "hashes": [
+                "sha256:d42c2d709d22c00d2b9a91e638d57240a8b79b4014122d92181fcd2549a2f79a",
+                "sha256:d8fbb662919c1b16f438ad91a8256220e53bcf6815c9ad5502c518b798de34f2"
+            ],
+            "index": "pypi",
+            "version": "==0.0"
         },
         "importlib-metadata": {
             "hashes": [
@@ -1060,7 +1075,7 @@
                 "sha256:71d14489da58b60ce12fc3ecb823facc59a8b23cd1b58edb97175640350d3a62",
                 "sha256:75abf758717a92a8f53aa96953f0c245c8cedf8e1e4184903db3659b419d4c17"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4'",
+            "markers": "python_version >= '3.6' and python_version < '4.0'",
             "version": "==5.2.1"
         },
         "spacy": {
@@ -1381,7 +1396,7 @@
                 "sha256:44ece4d53fb1706f667c9bd1c648f5469a2ec925fcf3a776667042d645472c14",
                 "sha256:aabaf16477806a5e1dd19aa41f8c2b7950dd3c746362d7e3223dbe6de6ac448e"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
             "version": "==1.26.9"
         },
         "wasabi": {
