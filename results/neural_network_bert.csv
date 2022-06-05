@@ -1,0 +1,2 @@
+,f1_macro,recall_macro,precision_macro,accuracy,auc_score,clf
+0,0.8701695238095238,0.8703333333333333,0.8716209523809523,0.8706085714285714,0.9362380952380952,Neural Network with BERT
