@@ -1,4 +1,5 @@
  # Binary autorship attribution on Reddit with comments in Portuguese
+[[Research Paper]](https://seer.upf.br/index.php/rbca/article/view/14045)
 
 
 Internet interaction environments such as social networks transfer large-scale textual data that implicitly carry the writing styles of each network user. Given the constant and intense flow of information through information systems of this type, it is necessary to develop techniques that can distinguish a text between two candidate authors for reasons of, for example, avoiding the return of users banned from the platform. This repository addressed and evaluated different ways of performing authorship attribution through natural language processing and machine learning, based on comments in Portuguese extracted from the social network Reddit.
